@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Wk7GuessTheCeleb</string>
+    <string name="an_image_of_a_celebrity">An image of a celebrity</string>
+    <string name="difficulty">Difficulty:</string>
+    <string name="play">Play!</string>
+    <string-array name="levelEntries">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+        <item>Expert</item>
+    </string-array>
+</resources>

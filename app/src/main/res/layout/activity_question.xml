@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuestionActivity">
+
+    <fragment
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="au.edu.jcu.cp3406.wk7guesstheceleb.StatusFragment"
+        tools:layout="@layout/fragment_status"/>
+
+    <fragment
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="au.edu.jcu.cp3406.wk7guesstheceleb.QuestionFragment"
+        tools:layout="@layout/fragment_question"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
