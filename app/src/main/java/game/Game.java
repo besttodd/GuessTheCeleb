@@ -11,15 +11,21 @@ public class Game {
         this.questions = questions;
         score = 0;
         round = 1;
+        System.out.println("Constructor"+round+"-------------------------------------");
     }
 
     public boolean isGameOver() { return gameOver; }
 
     public Question next() {
-        if (round >= questions.length - 1) { gameOver = true; }
-        System.out.println("NEXT()-----------------------------------------------"+round+"->"+questions[round].getCelebrityName());
-        round++;
-        return questions[round-1];
+        if (round >= questions.length) {
+            gameOver = true;
+            System.out.println("GAME OVER-------------------------------------------------------------");
+            return null;
+        } else {
+            round++;
+            System.out.println("NEXT()-----------------------------------------------" + round + "->" + questions[round - 1].getCelebrityName());
+            return questions[round - 1];
+        }
     }
 
     public void updateScore(boolean guess) {
@@ -31,6 +37,9 @@ public class Game {
     public Question getQuestion(int questionNum) { return questions[questionNum]; }
 
     public int getRound() { return round; }
+
+    public void setRound() { round++;
+        System.out.println("setRound"+round+"-------------------------------------");}
 
     public int count() { return score; }
 }

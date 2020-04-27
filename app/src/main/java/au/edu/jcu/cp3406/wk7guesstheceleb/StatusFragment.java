@@ -12,11 +12,18 @@ import android.widget.TextView;
 
 public class StatusFragment extends Fragment {
     private StateListener listener;
+    private View view;
     private TextView message;
     private TextView score;
 
     public StatusFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (StateListener) context;
     }
 
     @Override
@@ -27,12 +34,17 @@ public class StatusFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listener = (StateListener) context;
+    public void onStart() {
+        super.onStart();
+        view = getView();
     }
 
-    public void setMessage(String text) { message.setText(text); }
+    public void setMessage(String text) {
+        message = view.findViewById(R.id.message);
+        message.setText(text);
+    }
 
-    public void setScore(String text) { score.setText(text); }
+    public void setScore(String text) {
+        score = view.findViewById(R.id.score);
+        score.setText(text); }
 }

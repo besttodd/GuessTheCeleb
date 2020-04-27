@@ -25,9 +25,9 @@ public class CelebrityManager {
     public Bitmap get(int i) {
         InputStream stream = null;
         try {
-            stream = assetManager.open("celebs/" + imageNames[0]);
+            stream = assetManager.open("celebs/" + imageNames[i]);
         } catch (IOException e) {
-            System.out.println("Failed to open celebs/" + imageNames[0] + "-------------------------");
+            System.out.println("Failed to open celebs/" + imageNames[i] + "-------------------------");
         }
         Bitmap bitmap = BitmapFactory.decodeStream(stream);
         return bitmap;

@@ -15,6 +15,7 @@ public class GameBuilder {
 
     public GameBuilder(CelebrityManager celebrityManager) {
             questions = null;
+            newGame = null;
             this.celebrityManager = celebrityManager;
             answers = null;
             r = new Random();
@@ -42,6 +43,7 @@ public class GameBuilder {
 
     public Game populateGame(int n) {
         questions = new Question[n];
+
         Random r = new Random();
         Set<String> answerIndexes = new HashSet<>();
         String[] answers;
@@ -52,6 +54,7 @@ public class GameBuilder {
         }
         answers = new String[answerIndexes.size()];
         answerIndexes.toArray(answers);
+        //Add in correct answer......................................................................
 
         for (int i = 0; i < n; i++) {
             int randIndex = r.nextInt(celebrityManager.count());

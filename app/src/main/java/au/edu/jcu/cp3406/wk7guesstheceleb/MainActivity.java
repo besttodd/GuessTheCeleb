@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import java.util.Locale;
 
@@ -19,6 +18,7 @@ import game.Question;
 public class MainActivity extends AppCompatActivity implements StateListener {
     CelebrityManager celebrityManager;
     GameBuilder gameBuilder;
+    Game game;
     private GameFragment gameFragment;
     private StatusFragment statusFragment;
     private QuestionFragment questionFragment;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements StateListener {
 
         celebrityManager = new CelebrityManager(this.getAssets(), "celebs");
         gameBuilder = new GameBuilder(celebrityManager);
-        Game game = gameBuilder.create(gameFragment.getLevel());
+        game = gameBuilder.create(gameFragment.getLevel());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements StateListener {
         if (isLargeScreen) {
             switch (state) {
                 case START_GAME:
-                    Game game = gameBuilder.create(level);
+                    //Game game = gameBuilder.create(level);
                     questionFragment.setGame(game, 0);
                     break;
                 case CONTINUE_GAME:
