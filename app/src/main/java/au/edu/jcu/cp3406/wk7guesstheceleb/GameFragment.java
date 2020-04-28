@@ -3,6 +3,7 @@ package au.edu.jcu.cp3406.wk7guesstheceleb;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -44,10 +45,10 @@ public class GameFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listener = (StateListener) context;
     }
 
-    public Difficulty getLevel() { return level; }
+    Difficulty getLevel() { return level; }
 }

@@ -6,14 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import java.util.Locale;
 
 import game.CelebrityManager;
 import game.Game;
 import game.GameBuilder;
-import game.Question;
 
 public class MainActivity extends AppCompatActivity implements StateListener {
     CelebrityManager celebrityManager;
@@ -23,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements StateListener {
     private StatusFragment statusFragment;
     private QuestionFragment questionFragment;
     private boolean isLargeScreen;
+    Difficulty level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +36,19 @@ public class MainActivity extends AppCompatActivity implements StateListener {
 
         celebrityManager = new CelebrityManager(this.getAssets(), "celebs");
         gameBuilder = new GameBuilder(celebrityManager);
-        game = gameBuilder.create(gameFragment.getLevel());
+
     }
 
     @Override
     public void onUpdate(State state) {
-        Difficulty level = gameFragment.getLevel();
+        level = gameFragment.getLevel();
         String text = String.format(Locale.getDefault(), "state: %s level: %s", state, level);
         Log.i("MainActivity", text);
 
         if (isLargeScreen) {
             switch (state) {
                 case START_GAME:
-                    //Game game = gameBuilder.create(level);
+                    game = gameBuilder.create(level);
                     questionFragment.setGame(game, 0);
                     break;
                 case CONTINUE_GAME:
@@ -61,12 +60,10 @@ public class MainActivity extends AppCompatActivity implements StateListener {
                     statusFragment.setMessage("Game Over!");
                     break;
             }
-        } else {}
-    }
-
-    public void playClicked(View view) {
-        Intent intent = new Intent(this, QuestionActivity.class);
-        //intent.putExtra("celebrity", celebrityManager.get(0));
-        startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, QuestionActivity.class);
+            intent.putExtra("level", level);
+            startActivity(intent);
+        }
     }
 }

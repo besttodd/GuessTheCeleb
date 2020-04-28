@@ -8,13 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class CelebrityManager {
-    private String assetPath;
     private String[] imageNames;
     private AssetManager assetManager;
 
     public CelebrityManager(AssetManager assetManager, String assetPath) {
         this.assetManager = assetManager;
-        this.assetPath = assetPath;
         try {
             imageNames = assetManager.list("celebs");
         } catch (IOException e) {
@@ -22,7 +20,7 @@ public class CelebrityManager {
         }
     }
 
-    public Bitmap get(int i) {
+    Bitmap get(int i) {
         InputStream stream = null;
         try {
             stream = assetManager.open("celebs/" + imageNames[i]);

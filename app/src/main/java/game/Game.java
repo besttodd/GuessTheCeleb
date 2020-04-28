@@ -38,8 +38,5 @@ public class Game {
 
     public int getRound() { return round; }
 
-    public void setRound() { round++;
-        System.out.println("setRound"+round+"-------------------------------------");}
-
     public int count() { return score; }
 }

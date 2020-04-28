@@ -7,18 +7,14 @@ import java.util.Set;
 import au.edu.jcu.cp3406.wk7guesstheceleb.Difficulty;
 
 public class GameBuilder {
-    Question[] questions;
-    Game newGame;
-    CelebrityManager celebrityManager;
-    String[] answers;
-    Random r;
+    private Question[] questions;
+    private Game newGame;
+    private CelebrityManager celebrityManager;
 
     public GameBuilder(CelebrityManager celebrityManager) {
             questions = null;
             newGame = null;
             this.celebrityManager = celebrityManager;
-            answers = null;
-            r = new Random();
     }
 
     public Game create(Difficulty level) {
@@ -41,7 +37,7 @@ public class GameBuilder {
         return newGame;
     }
 
-    public Game populateGame(int n) {
+    private Game populateGame(int n) {
         questions = new Question[n];
 
         Random r = new Random();
@@ -54,7 +50,6 @@ public class GameBuilder {
         }
         answers = new String[answerIndexes.size()];
         answerIndexes.toArray(answers);
-        //Add in correct answer......................................................................
 
         for (int i = 0; i < n; i++) {
             int randIndex = r.nextInt(celebrityManager.count());

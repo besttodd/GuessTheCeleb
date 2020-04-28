@@ -28,7 +28,7 @@ public class GameUnitTest {
 
     @Test
     public void testGame() {
-        Question question = null;
+        Question question;
         Question[] questions = new Question[3];
         String[] answers = new String[]{"bob", "jane", "harry"};
         for (int i = 0; i < 3; i++) {
