@@ -42,7 +42,7 @@ public class GameInstrumentedTest {
         Game game = gameBuilder.create(Difficulty.EASY);
 
         int correctlyAnswered = 0;
-        loop: while (!game.isGameOver()) {
+        loop: while (game.gameOver()) {
             Question question = game.next();
             for (int i = 0; i < celebrityManager.count(); i++) {
                 Log.i("GameInstrumentedTest", celebrityManager.getName(i));

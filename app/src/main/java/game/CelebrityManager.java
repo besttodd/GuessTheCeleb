@@ -3,6 +3,7 @@ package game;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +17,7 @@ public class CelebrityManager {
         try {
             imageNames = assetManager.list(assetPath);
         } catch (IOException e) {
-            System.out.println("Failed to get names-------------------------------------------------");
+            Log.i("CelebrityManger", "Failed to get names");
         }
     }
 
@@ -25,7 +26,7 @@ public class CelebrityManager {
         try {
             stream = assetManager.open("celebs/" + imageNames[i]);
         } catch (IOException e) {
-            System.out.println("Failed to open celebs/" + imageNames[i] + "-------------------------");
+            Log.i("CelebrityManager", "Failed to open celebs/" + imageNames[i]);
         }
         return BitmapFactory.decodeStream(stream);
     }
@@ -36,5 +37,7 @@ public class CelebrityManager {
         return name.replace("-", " ");
     }
 
-    public int count() { return imageNames.length; }
+    public int count() {
+        return imageNames.length;
+    }
 }

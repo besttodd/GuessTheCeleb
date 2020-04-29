@@ -1,9 +1,9 @@
 package au.edu.jcu.cp3406.wk7guesstheceleb;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import game.Timer;
 
@@ -19,15 +18,14 @@ public class StatusFragment extends Fragment {
     private StateListener listener;
     private View view;
     private Timer timer;
-    final Handler handler = new Handler();
-    Runnable runnable;
+    private final Handler handler = new Handler();
 
     public StatusFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listener = (StateListener) context;
         timer = new Timer();
@@ -46,33 +44,33 @@ public class StatusFragment extends Fragment {
         view = getView();
     }
 
-    public void setMessage(String text) {
+    void setMessage(String text) {
         TextView message = view.findViewById(R.id.message);
         message.setText(text);
     }
 
-    public void setScore(String text) {
+    void setScore(String text) {
         TextView score = view.findViewById(R.id.score);
         score.setText(text);
     }
 
-    public void setTime(String text) {
+    private void setTime(String text) {
         TextView time = view.findViewById(R.id.time);
         time.setText(text);
     }
 
-    public void setTimer(String time) {
+    void setTimer(String time) {
         timer.setTimer(time);
     }
 
-    public void stopTimer() {
+    void stopTimer() {
         timer.stopTimer();
     }
 
-    public void startTimer() {
+    void startTimer() {
         timer.startTimer();
 
-        handler.post(runnable = new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 timer.tick();

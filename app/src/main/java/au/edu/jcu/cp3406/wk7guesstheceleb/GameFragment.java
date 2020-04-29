@@ -17,7 +17,6 @@ public class GameFragment extends Fragment {
     private Difficulty level;
 
     public GameFragment() {
-        // Required empty public constructor
         level = Difficulty.EASY;
     }
 
@@ -40,7 +39,6 @@ public class GameFragment extends Fragment {
                                                               }
 
         );
-
         return view;
     }
 
@@ -50,5 +48,7 @@ public class GameFragment extends Fragment {
         listener = (StateListener) context;
     }
 
-    Difficulty getLevel() { return level; }
+    Difficulty getLevel() {
+        return level;
+    }
 }

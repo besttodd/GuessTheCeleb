@@ -36,7 +36,7 @@ public class GameUnitTest {
         }
         Game game = new Game(questions);
 
-        while (!game.isGameOver()) {
+        while (game.gameOver()) {
             question = game.next();
             game.updateScore(question.check("bob"));
         }

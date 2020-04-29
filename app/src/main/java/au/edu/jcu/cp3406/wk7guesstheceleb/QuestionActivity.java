@@ -12,7 +12,7 @@ import game.CelebrityManager;
 import game.Game;
 import game.GameBuilder;
 
-public class QuestionActivity extends AppCompatActivity implements StateListener{
+public class QuestionActivity extends AppCompatActivity implements StateListener {
     StatusFragment statusFragment;
     QuestionFragment questionFragment;
     CelebrityManager celebrityManager;
@@ -28,12 +28,11 @@ public class QuestionActivity extends AppCompatActivity implements StateListener
         FragmentManager fragmentManager = getSupportFragmentManager();
         statusFragment = (StatusFragment) fragmentManager.findFragmentById(R.id.status);
         questionFragment = (QuestionFragment) fragmentManager.findFragmentById(R.id.question);
-        currentGame = getIntent().getExtras().getParcelable("Game");
+        currentGame = Objects.requireNonNull(getIntent().getExtras()).getParcelable("Game");
         celebrityManager = new CelebrityManager(this.getAssets(), "celebs");
         gameBuilder = new GameBuilder(celebrityManager);
         level = (Difficulty) getIntent().getSerializableExtra("level");
         currentGame = gameBuilder.create(Objects.requireNonNull(level));
-
         questionFragment.setGame(currentGame);
         statusFragment.setTimer(currentGame.getTimeLimit());
         statusFragment.startTimer();
@@ -50,8 +49,6 @@ public class QuestionActivity extends AppCompatActivity implements StateListener
                 statusFragment.setScore(questionFragment.getScore());
                 statusFragment.setMessage("Game Over!");
                 Intent intent = new Intent(this, ResultsActivity.class);
-                //Bundle bundle = new Bundle();
-                //bundle.putSerializable("difficulty", level);
                 intent.putExtra("difficulty", level);
                 intent.putExtra("score", currentGame.getScore());
                 startActivity(intent);

@@ -1,7 +1,5 @@
 package game;
 
-import au.edu.jcu.cp3406.wk7guesstheceleb.Difficulty;
-
 public class Game {
     private boolean gameOver;
     private Question[] questions;
@@ -17,7 +15,9 @@ public class Game {
         timeLimit = "00.10";
     }
 
-    public boolean isGameOver() { return gameOver; }
+    public boolean gameOver() {
+        return !gameOver;
+    }
 
     public Question next() {
         if (round >= questions.length) {
@@ -30,16 +30,28 @@ public class Game {
     }
 
     public void updateScore(boolean guess) {
-        if (guess) { score++; }
+        if (guess) {
+            score++;
+        }
     }
 
-    public String getScore() { return "Score: " + score + "/" + round; }
+    public String getScore() {
+        return "Score: " + score + "/" + round;
+    }
 
-    public Question getQuestion(int questionNum) { return questions[questionNum]; }
+    public Question getQuestion(int questionNum) {
+        return questions[questionNum];
+    }
 
-    public String getTimeLimit() { return timeLimit; }
+    public String getTimeLimit() {
+        return timeLimit;
+    }
 
-    public void setTimeLimit(String time) { timeLimit = time; }
+    void setTimeLimit(String time) {
+        timeLimit = time;
+    }
 
-    public int count() { return score; }
+    public int count() {
+        return score;
+    }
 }

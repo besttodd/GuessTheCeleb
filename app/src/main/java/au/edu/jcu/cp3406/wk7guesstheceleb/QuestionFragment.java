@@ -15,8 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import java.util.Random;
-
 import game.Game;
 import game.Question;
 
@@ -58,11 +56,13 @@ public class QuestionFragment extends Fragment {
         addPossibleNames(firstQ);
     }
 
-    String getScore() { return currentGame.getScore(); }
+    String getScore() {
+        return currentGame.getScore();
+    }
 
     void showNextQuestion() {
         Question nextQuestion = currentGame.next();
-        if (!currentGame.isGameOver()) {
+        if (currentGame.gameOver()) {
             image.setImageBitmap(nextQuestion.getCelebrityImage());
             addPossibleNames(nextQuestion);
         } else {
@@ -82,7 +82,7 @@ public class QuestionFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 currentGame.updateScore(currentQuestion.check(possibilities[position]));
-                if (!currentGame.isGameOver()) {
+                if (currentGame.gameOver()) {
                     listener.onUpdate(State.CONTINUE_GAME);
                 } else {
                     listener.onUpdate(State.GAME_OVER);

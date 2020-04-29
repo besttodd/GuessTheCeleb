@@ -17,9 +17,13 @@ public class Question {
         r = new Random();
     }
 
-    public boolean check(String guess) { return guess.equals(celebrityName); }
+    public boolean check(String guess) {
+        return guess.equals(celebrityName);
+    }
 
-    public Bitmap getCelebrityImage() { return celebrityImage; }
+    public Bitmap getCelebrityImage() {
+        return celebrityImage;
+    }
 
     public String[] getPossibleNames() {
         boolean isThere = false;

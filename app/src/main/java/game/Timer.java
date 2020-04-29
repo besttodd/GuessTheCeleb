@@ -15,29 +15,35 @@ public class Timer {
 
     public void setTimer(String current) {
         isRunning = false;
-        seconds = Integer.parseInt(current.substring(current.length()-2));
+        seconds = Integer.parseInt(current.substring(current.length() - 2));
         minutes = Integer.parseInt(current.substring(1, 2));
     }
 
     public void tick() {
-        if (seconds > 0) { seconds--; }
-        else if (minutes > 0) {
+        if (seconds > 0) {
+            seconds--;
+        } else if (minutes > 0) {
             seconds = 59;
             minutes--;
-        }else {
+        } else {
             stopTimer();
-            System.out.println("STOP-------------------------------------------------------------------");
         }
     }
 
-    public void startTimer() { isRunning = true; }
+    public void startTimer() {
+        isRunning = true;
+    }
 
-    public void stopTimer() { isRunning = false; }
+    public void stopTimer() {
+        isRunning = false;
+    }
 
-    public boolean isRunning() { return isRunning; }
+    public boolean isRunning() {
+        return isRunning;
+    }
 
     @NonNull
-    public String toString(){
+    public String toString() {
         return String.format("%02d", minutes) + ":"
                 + String.format("%02d", seconds);
     }

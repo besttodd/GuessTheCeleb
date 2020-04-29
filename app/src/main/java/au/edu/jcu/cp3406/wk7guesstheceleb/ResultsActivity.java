@@ -2,12 +2,12 @@ package au.edu.jcu.cp3406.wk7guesstheceleb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 public class ResultsActivity extends AppCompatActivity {
     String score;
@@ -19,7 +19,7 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        score = getIntent().getExtras().getString("score");
+        score = Objects.requireNonNull(getIntent().getExtras()).getString("score");
         difficulty = (Difficulty) getIntent().getSerializableExtra("difficulty");
         isLarge = getIntent().getExtras().getBoolean("largeScreen");
 

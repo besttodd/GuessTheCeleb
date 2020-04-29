@@ -46,7 +46,7 @@ public class GameBuilder {
     private Game populateGame(int n) {
         Set<Integer> uniqueSet = new HashSet<>();
 
-        //Generate an array of new questions
+        //Generate a unique random array of new questions
         while (uniqueSet.size() != n) {
             uniqueSet.add(r.nextInt(celebrityManager.count()));
         }
@@ -62,6 +62,7 @@ public class GameBuilder {
         return newGame;
     }
 
+    //populate unique random possible answers
     private String[] getNewAnswers(int n) {
         Set<String> answerIndexes = new HashSet<>();
         String[] answers;
