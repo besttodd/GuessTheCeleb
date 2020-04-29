@@ -3,6 +3,8 @@
     <string name="an_image_of_a_celebrity">An image of a celebrity</string>
     <string name="difficulty">Difficulty:</string>
     <string name="play">Play!</string>
+    <string name="stats">Easy = 3 Q\'s in 15 Sec.\n Medium = 6 Q\'s in 30 Sec.\nHard = 12 Q\'s in 1 Min.\n Expert = 24 Q\'s in 1 Min. 30 Sec.</string>
+    <string name="play_again">Play Again</string>
     <string-array name="levelEntries">
         <item>Easy</item>
         <item>Medium</item>

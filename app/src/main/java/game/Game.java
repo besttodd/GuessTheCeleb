@@ -1,17 +1,20 @@
 package game;
 
+import au.edu.jcu.cp3406.wk7guesstheceleb.Difficulty;
+
 public class Game {
     private boolean gameOver;
     private Question[] questions;
     private int score;
     private int round;
+    private String timeLimit;
 
     public Game(Question[] questions) {
         gameOver = false;
         this.questions = questions;
         score = 0;
         round = 1;
-        System.out.println("Constructor"+round+"-------------------------------------");
+        timeLimit = "00.10";
     }
 
     public boolean isGameOver() { return gameOver; }
@@ -19,11 +22,9 @@ public class Game {
     public Question next() {
         if (round >= questions.length) {
             gameOver = true;
-            System.out.println("GAME OVER-------------------------------------------------------------");
             return null;
         } else {
             round++;
-            System.out.println("NEXT()-----------------------------------------------" + round + "->" + questions[round - 1].getCelebrityName());
             return questions[round - 1];
         }
     }
@@ -36,7 +37,9 @@ public class Game {
 
     public Question getQuestion(int questionNum) { return questions[questionNum]; }
 
-    public int getRound() { return round; }
+    public String getTimeLimit() { return timeLimit; }
+
+    public void setTimeLimit(String time) { timeLimit = time; }
 
     public int count() { return score; }
 }

@@ -22,9 +22,17 @@ public class Question {
     public Bitmap getCelebrityImage() { return celebrityImage; }
 
     public String[] getPossibleNames() {
-        possibleNames[r.nextInt(possibleNames.length)] = celebrityName;
+        boolean isThere = false;
+        for (String possibleName : possibleNames) {
+            if (possibleName.equals(celebrityName)) {
+                isThere = true;
+                break;
+            }
+        }
+
+        if (!isThere) {
+            possibleNames[r.nextInt(possibleNames.length)] = celebrityName;
+        }
         return possibleNames;
     }
-
-    public String getCelebrityName() { return celebrityName; }
 }

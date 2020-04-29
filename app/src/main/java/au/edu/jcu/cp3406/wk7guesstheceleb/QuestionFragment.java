@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-
 import java.util.Random;
 
 import game.Game;
@@ -52,9 +51,9 @@ public class QuestionFragment extends Fragment {
         super.onStart();
     }
 
-    void setGame(Game game, int question) {
+    void setGame(Game game) {
         currentGame = game;
-        Question firstQ = currentGame.getQuestion(question);
+        Question firstQ = currentGame.getQuestion(0);
         image.setImageBitmap(firstQ.getCelebrityImage());
         addPossibleNames(firstQ);
     }
@@ -66,44 +65,16 @@ public class QuestionFragment extends Fragment {
         if (!currentGame.isGameOver()) {
             image.setImageBitmap(nextQuestion.getCelebrityImage());
             addPossibleNames(nextQuestion);
-        } else { listener.onUpdate(State.GAME_OVER); }
+        } else {
+            listener.onUpdate(State.GAME_OVER);
+        }
     }
 
     private void addPossibleNames(Question question) {
         GridView gridLayout = view.findViewById(R.id.possibleNamesGrid);
-        boolean correctOption = false;
-        Random r = new Random();
         final Question currentQuestion = question;
-        System.out.println("addPossibleNames"+currentGame.getRound()+"-------------------------------------");
         final String[] possibilities = currentQuestion.getPossibleNames();
 
-        //Check for correct answer
-        for (String possibility : possibilities) {
-            if (possibility.equals(question.getCelebrityName())) {
-                correctOption = true;
-                break;
-            }
-        }
-
-        //Add in correct answer if not already a possibility
-        if (!correctOption) { possibilities[r.nextInt(possibilities.length)] = question.getCelebrityName(); }
-
-        /*for (String possibility : possibilities) {
-            getLayoutInflater().inflate(R.layout.button, gridLayout);
-            View lastChild = gridLayout.getChildAt(gridLayout.getChildCount()-1);
-            final Button newButton = lastChild.findViewById(R.id.button);
-            newButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    currentGame.updateScore(currentQuestion.check(newButton.getText().toString()));
-                    if (!currentGame.isGameOver()) {
-                        listener.onUpdate(State.CONTINUE_GAME);
-                        System.out.println(newButton.getText() + "-----------------------------------------------------------");
-                    } else { listener.onUpdate(State.GAME_OVER); }
-                }
-            });
-            newButton.setText(possibility);
-        }*/
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(context, R.layout.button, R.id.button, possibilities);
         gridLayout.setAdapter(arrayAdapter);
 
@@ -113,8 +84,9 @@ public class QuestionFragment extends Fragment {
                 currentGame.updateScore(currentQuestion.check(possibilities[position]));
                 if (!currentGame.isGameOver()) {
                     listener.onUpdate(State.CONTINUE_GAME);
-                    System.out.println(possibilities[position] + "-----------------------------------------------------------");
-                } else { listener.onUpdate(State.GAME_OVER); }
+                } else {
+                    listener.onUpdate(State.GAME_OVER);
+                }
             }
         });
     }

@@ -14,7 +14,7 @@ public class CelebrityManager {
     public CelebrityManager(AssetManager assetManager, String assetPath) {
         this.assetManager = assetManager;
         try {
-            imageNames = assetManager.list("celebs");
+            imageNames = assetManager.list(assetPath);
         } catch (IOException e) {
             System.out.println("Failed to get names-------------------------------------------------");
         }
@@ -27,8 +27,7 @@ public class CelebrityManager {
         } catch (IOException e) {
             System.out.println("Failed to open celebs/" + imageNames[i] + "-------------------------");
         }
-        Bitmap bitmap = BitmapFactory.decodeStream(stream);
-        return bitmap;
+        return BitmapFactory.decodeStream(stream);
     }
 
     public String getName(int i) {

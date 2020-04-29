@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/questionFragment"
+    android:tag="questionFragment"
     tools:context=".QuestionActivity">
 
     <fragment
         android:id="@+id/status"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:name="au.edu.jcu.cp3406.wk7guesstheceleb.StatusFragment"
-        tools:layout="@layout/fragment_status"/>
+        tools:layout="@layout/fragment_status" />
 
     <fragment
         android:id="@+id/question"

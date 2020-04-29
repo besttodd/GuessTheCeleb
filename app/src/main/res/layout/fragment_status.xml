@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="top"
     tools:context=".StatusFragment">
 
     <TextView
@@ -13,17 +14,17 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        style="@style/large"
-        android:text="Time remaining: 0 seconds"/>
+        android:layout_gravity="top"
+        style="@style/large" />
 
     <TextView
         android:id="@+id/score"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
-        style="@style/large"
-        android:text="3 Rounds" />
+        android:gravity="center_horizontal"
+        android:layout_gravity="top"
+        style="@style/large" />
 
     <TextView
         android:id="@+id/message"
@@ -31,6 +32,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
+        android:text="@string/stats"
         style="@style/large" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

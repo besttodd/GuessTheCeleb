@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements StateListener {
 
         celebrityManager = new CelebrityManager(this.getAssets(), "celebs");
         gameBuilder = new GameBuilder(celebrityManager);
-
     }
 
     @Override
@@ -49,15 +48,26 @@ public class MainActivity extends AppCompatActivity implements StateListener {
             switch (state) {
                 case START_GAME:
                     game = gameBuilder.create(level);
-                    questionFragment.setGame(game, 0);
+                    statusFragment.setTimer(game.getTimeLimit());
+                    questionFragment.setGame(game);
+                    statusFragment.startTimer();
+                    statusFragment.setMessage("");
                     break;
                 case CONTINUE_GAME:
                     statusFragment.setScore(questionFragment.getScore());
                     questionFragment.showNextQuestion();
                     break;
                 case GAME_OVER:
+                    statusFragment.stopTimer();
                     statusFragment.setScore(questionFragment.getScore());
                     statusFragment.setMessage("Game Over!");
+                    Intent intent = new Intent(this, ResultsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("difficulty", level);
+                    intent.putExtra("score", questionFragment.getScore());
+                    intent.putExtra("difficulty", level);
+                    intent.putExtra("largeScreen", isLargeScreen);
+                    startActivity(intent);
                     break;
             }
         } else {
